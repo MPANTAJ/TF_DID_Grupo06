@@ -1,0 +1,44 @@
+{
+	"name": "DS_ADLS_XLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedService_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "RESUMEN",
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "CODIGO",
+				"type": "String"
+			},
+			{
+				"name": "DEPARTAMENTO",
+				"type": "String"
+			},
+			{
+				"name": "2021",
+				"type": "String"
+			},
+			{
+				"name": "2022",
+				"type": "String"
+			},
+			{
+				"name": "2023",
+				"type": "String"
+			},
+			{
+				"name": "2024",
+				"type": "String"
+			}
+		]
+	}
+}
