@@ -1,0 +1,11 @@
+{
+	"name": "master_party_core",
+	"properties": {
+		"folder": {
+			"name": "02_master_models"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-07-26T00:59:07Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
