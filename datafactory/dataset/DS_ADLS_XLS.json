@@ -10,7 +10,10 @@
 		"typeProperties": {
 			"sheetName": "RESUMEN",
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": "PEA.xlsx",
+				"folderPath": "GOBIERNO/XLS",
+				"fileSystem": "raw"
 			},
 			"firstRowAsHeader": true
 		},
