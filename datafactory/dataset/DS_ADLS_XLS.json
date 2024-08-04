@@ -5,15 +5,34 @@
 			"referenceName": "LinkedService_ADLS",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"zona": {
+				"type": "string"
+			},
+			"directorio": {
+				"type": "string"
+			},
+			"archivo": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "RESUMEN",
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "PEA.xlsx",
-				"folderPath": "GOBIERNO/XLS",
-				"fileSystem": "raw"
+				"fileName": {
+					"value": "@dataset().archivo",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().directorio",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().zona",
+					"type": "Expression"
+				}
 			},
 			"firstRowAsHeader": true
 		},
