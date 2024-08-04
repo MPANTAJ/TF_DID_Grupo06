@@ -12,10 +12,22 @@
 					"name": "FuenteBeneficiario"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_ADLS_PARQUET",
+						"type": "DatasetReference"
+					},
+					"name": "SinkHubBeneficiario",
+					"description": "Add sink dataset"
+				}
+			],
 			"transformations": [
 				{
-					"name": "derivedColumn1"
+					"name": "ColumnBeneficiario"
+				},
+				{
+					"name": "HubBeneficiario"
 				}
 			],
 			"scriptLines": [
@@ -32,7 +44,29 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> FuenteBeneficiario",
-				"FuenteBeneficiario derive(FECHA_CARGA = currentUTC()) ~> derivedColumn1"
+				"FuenteBeneficiario derive(FECHA_CARGA = currentUTC(),",
+				"          REGISTRAR_FUENTE = \"FMV\") ~> ColumnBeneficiario",
+				"ColumnBeneficiario select(mapColumn(",
+				"          ID_BENEFICIARIO,",
+				"          FECHA_NACIMIENTO,",
+				"          TIPO_PARENTESCO,",
+				"          EDAD,",
+				"          ID_OCUPACION,",
+				"          ID_ESTADOCIVIL,",
+				"          ID_GRADOINSTRUCCION,",
+				"          FECHA_CARGA,",
+				"          REGISTRAR_FUENTE",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> HubBeneficiario",
+				"HubBeneficiario sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkHubBeneficiario"
 			]
 		}
 	}
