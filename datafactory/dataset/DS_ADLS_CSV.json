@@ -5,14 +5,36 @@
 			"referenceName": "LinkedService_ADLS",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"zona": {
+				"type": "string"
+			},
+			"directorio": {
+				"type": "string"
+			},
+			"archivo": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "pea"
+				"fileName": {
+					"value": "@dataset().archivo",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().directorio",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().zona",
+					"type": "Expression"
+				}
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "|",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
