@@ -20,6 +20,9 @@
 					},
 					"name": "SinkHubBeneficiario",
 					"description": "Exportar data a DS_ADLS_PARQUET"
+				},
+				{
+					"name": "sink1"
 				}
 			],
 			"transformations": [
@@ -66,7 +69,11 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> SinkHubBeneficiario"
+				"     skipDuplicateMapOutputs: true) ~> SinkHubBeneficiario",
+				"ColumnBeneficiario sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}

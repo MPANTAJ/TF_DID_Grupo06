@@ -1,6 +1,54 @@
 {
 	"name": "master_party_core",
 	"properties": {
+		"activities": [
+			{
+				"name": "DataFlowBeneficiario",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_BENEFICIARIO",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"FuenteBeneficiario": {
+								"zona": "master",
+								"directorio": "warehouse",
+								"archivo": "FMV_BENEFICARIO.parquet"
+							},
+							"SinkHubBeneficiario": {
+								"zona": "master",
+								"directorio": "silver",
+								"archivo": "HUB_BENEFICIARIO.parquet"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
+			}
+		],
 		"folder": {
 			"name": "02_master_models"
 		},
