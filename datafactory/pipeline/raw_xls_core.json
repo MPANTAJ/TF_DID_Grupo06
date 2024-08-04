@@ -3,72 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_Data_XLS",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"maxConcurrentConnections": 2,
-							"copyBehavior": "PreserveHierarchy"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DS_ADLS_XLS",
-						"type": "DatasetReference",
-						"parameters": {
-							"zona": "raw",
-							"directorio": "GOBIERNO/XLS",
-							"archivo": "PEA.xlsx",
-							"hoja": "RESUMEN"
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_ADLS_PARQUET",
-						"type": "DatasetReference",
-						"parameters": {
-							"zona": "master",
-							"directorio": "warehouse",
-							"archivo": "PEA.parquet"
-						}
-					}
-				]
-			},
-			{
 				"name": "Obtener_Lista",
 				"type": "Lookup",
 				"dependsOn": [],
@@ -105,7 +39,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "Importar Data",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -115,7 +49,89 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"activities": [
+						{
+							"name": "Copy_Data_XLS",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings",
+										"maxConcurrentConnections": 2,
+										"copyBehavior": "PreserveHierarchy"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_ADLS_XLS",
+									"type": "DatasetReference",
+									"parameters": {
+										"zona": "raw",
+										"directorio": {
+											"value": "GOBIERNO/XLS",
+											"type": "Expression"
+										},
+										"archivo": {
+											"value": "@concat('FMV_',item().Lista_Tablas,'.xlsx')",
+											"type": "Expression"
+										},
+										"hoja": {
+											"value": "@concat(item().Lista_Tablas)",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_ADLS_PARQUET",
+									"type": "DatasetReference",
+									"parameters": {
+										"zona": "master",
+										"directorio": "warehouse",
+										"archivo": {
+											"value": "@concat('FMV_',item().Lista_Tablas,'.parquet')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"folder": {
