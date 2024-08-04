@@ -19,7 +19,7 @@
 						"type": "DatasetReference"
 					},
 					"name": "SinkHubBeneficiario",
-					"description": "Add sink dataset"
+					"description": "Exportar data a DS_ADLS_PARQUET"
 				}
 			],
 			"transformations": [
