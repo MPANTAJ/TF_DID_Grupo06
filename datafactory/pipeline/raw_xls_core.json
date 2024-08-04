@@ -74,7 +74,7 @@
 						"parameters": {
 							"zona": "master",
 							"directorio": "warehouse",
-							"archivo": "pea.parquet"
+							"archivo": "PEA.parquet"
 						}
 					}
 				]
