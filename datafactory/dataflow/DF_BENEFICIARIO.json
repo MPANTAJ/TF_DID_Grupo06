@@ -1,0 +1,34 @@
+{
+	"name": "DF_BENEFICIARIO",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ADLS_PARQUET",
+						"type": "DatasetReference"
+					},
+					"name": "FuenteBeneficiario"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          ID_BENEFICIARIO as string,",
+				"          FECHA_NACIMIENTO as string,",
+				"          TIPO_PARENTESCO as string,",
+				"          EDAD as string,",
+				"          ID_OCUPACION as string,",
+				"          ID_ESTADOCIVIL as string,",
+				"          ID_GRADOINSTRUCCION as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> FuenteBeneficiario"
+			]
+		}
+	}
+}
