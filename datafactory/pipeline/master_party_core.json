@@ -22,12 +22,12 @@
 							"FuenteBeneficiario": {
 								"zona": "master",
 								"directorio": "warehouse",
-								"archivo": "FMV_BENEFICARIO.parquet"
+								"archivo": "FMV_BENEFICIARIO.parquet"
 							},
 							"SinkHubBeneficiario": {
 								"zona": "master",
 								"directorio": "silver",
-								"archivo": "HUB_BENEFICIARIO.parquet"
+								"archivo": "HUBBENEFICIARIO.parquet"
 							}
 						}
 					},
