@@ -14,11 +14,18 @@
 			},
 			"archivo": {
 				"type": "string"
+			},
+			"hoja": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": {
+				"value": "@dataset().hoja",
+				"type": "Expression"
+			},
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {

@@ -39,7 +39,12 @@
 				"inputs": [
 					{
 						"referenceName": "DS_ADLS_XLS",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"zona": "raw",
+							"directorio": "GOBIERNO/XLS",
+							"archivo": "PEA.xlsx"
+						}
 					}
 				]
 			}
