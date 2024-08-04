@@ -51,6 +51,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Obtener_Lista').output.value",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy_Data_XLS",
