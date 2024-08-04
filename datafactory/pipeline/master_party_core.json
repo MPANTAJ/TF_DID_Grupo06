@@ -21,7 +21,7 @@
 						"datasetParameters": {
 							"FuenteBeneficiario": {
 								"zona": "master",
-								"directorio": "silver",
+								"directorio": "warehouse",
 								"archivo": "FMV_BENEFICARIO.parquet"
 							},
 							"SinkHubBeneficiario": {
