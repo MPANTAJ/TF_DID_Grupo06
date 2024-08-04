@@ -1,5 +1,5 @@
 {
-	"name": "DS_ADLS_XLS",
+	"name": "DS_ADLS_XLSX",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LinkedService_ADLS",

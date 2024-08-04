@@ -100,12 +100,12 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DS_ADLS_XLS",
+									"referenceName": "DS_ADLS_XLSX",
 									"type": "DatasetReference",
 									"parameters": {
 										"zona": "raw",
 										"directorio": {
-											"value": "FMV/XLS",
+											"value": "FMV/EXCEL",
 											"type": "Expression"
 										},
 										"archivo": {
