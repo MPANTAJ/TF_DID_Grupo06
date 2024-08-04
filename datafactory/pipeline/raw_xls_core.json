@@ -13,18 +13,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [
-					{
-						"name": "zona",
-						"value": ""
-					},
-					{
-						"name": "directorio"
-					},
-					{
-						"name": "archivo"
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "ExcelSource",
