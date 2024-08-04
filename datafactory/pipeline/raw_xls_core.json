@@ -94,9 +94,28 @@
 					},
 					"dataset": {
 						"referenceName": "DS_ADLS_CSV",
-						"type": "DatasetReference"
-					}
+						"type": "DatasetReference",
+						"parameters": {
+							"zona": "raw",
+							"directorio": "CONFIG",
+							"archivo": "lista_tablas.txt"
+						}
+					},
+					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Obtener_Lista",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"folder": {
