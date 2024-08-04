@@ -43,7 +43,8 @@
 						"parameters": {
 							"zona": "raw",
 							"directorio": "GOBIERNO/XLS",
-							"archivo": "PEA.xlsx"
+							"archivo": "PEA.xlsx",
+							"hoja": "RESUMEN"
 						}
 					}
 				]
