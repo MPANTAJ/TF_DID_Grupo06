@@ -34,7 +34,26 @@
 							"enablePartitionDiscovery": false
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"maxConcurrentConnections": 2,
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
@@ -45,6 +64,17 @@
 							"directorio": "GOBIERNO/XLS",
 							"archivo": "PEA.xlsx",
 							"hoja": "RESUMEN"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_ADLS_PARQUET",
+						"type": "DatasetReference",
+						"parameters": {
+							"zona": "master",
+							"directorio": "warehouse",
+							"archivo": "pea.parquet"
 						}
 					}
 				]
