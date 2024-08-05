@@ -7,7 +7,7 @@
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "fmv_datamart",
+				"databaseName": "fmv_datawarehouse",
 				"poolName": "Built-in"
 			},
 			"resultLimit": 5000
