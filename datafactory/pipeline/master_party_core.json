@@ -27,7 +27,7 @@
 							"SinkHubBeneficiario": {
 								"zona": "master",
 								"directorio": "silver",
-								"archivo": "HUBBENEFICIARIO.parquet"
+								"archivo": "HUB_BENEFICIARIO.parquet"
 							}
 						}
 					},
