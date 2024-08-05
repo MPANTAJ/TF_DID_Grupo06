@@ -1,0 +1,17 @@
+{
+	"name": "ddl_create_tables",
+	"properties": {
+		"content": {
+			"query": "USE up_datalake;\nGO\n\nDROP EXTERNAL TABLE up_datalake.sat_usuario; \n\n--1. Validacion de Datos utilizando UPExternalDataSource\nSELECT * \nFROM OPENROWSET (\nBULK '/master/silver/sat_usuario/*.parquet',\nDATA_SOURCE= 'UPExternalDataSource',\nFORMAT ='PARQUET') AS [file]\nGO\n\n--2. Creación de tabla externa\nCREATE EXTERNAL TABLE up_datalake.sat_usuario\n(    \n    hk_usuario VARCHAR(100),\n    feccarga VARCHAR(100),    \nregfuente VARCHAR(100),    \nfeccreation VARCHAR(100),    \nnumdownvotes VARCHAR(100),    \nemail VARCHAR(100)\nWITH (\n    LOCATION = '/master/silver/sat_usuario/*.parquet',   \n    DATA_SOURCE = UPExternalDataSource,\n    FILE_FORMAT = UPParquetFileFormat);\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
